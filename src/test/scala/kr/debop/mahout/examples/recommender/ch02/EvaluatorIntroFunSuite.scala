@@ -24,8 +24,9 @@ class EvaluatorIntroFunSuite extends AbstractMahoutFunSuite {
 
   private val log = LoggerFactory.getLogger(getClass)
 
+  def dataFile = new File("src/data/intro.csv")
+
   test("RecommendIntro") {
-    val dataFile = new File("src/data/intro.csv")
     val model = new FileDataModel(dataFile)
 
     val similarity = new PearsonCorrelationSimilarity(model)
@@ -43,7 +44,6 @@ class EvaluatorIntroFunSuite extends AbstractMahoutFunSuite {
   test("추천기 평가하기. 실제와 예측값의 차이로 평가") {
     RandomUtils.useTestSeed()
 
-    val dataFile = new File("src/data/intro.csv")
     val model = new FileDataModel(dataFile)
 
     val evaluator = new AverageAbsoluteDifferenceRecommenderEvaluator()
@@ -58,12 +58,12 @@ class EvaluatorIntroFunSuite extends AbstractMahoutFunSuite {
     // Use 70% of the data to train; test using the other 30%.
     val score = evaluator.evaluate(recommenderBuilder, null, model, 0.7, 1.0)
     println(s"Score=$score")
+    score shouldEqual 0.0
   }
 
   test("추천기 정확율/재현율") {
     RandomUtils.useTestSeed()
 
-    val dataFile = new File("src/data/intro.csv")
     val model = new FileDataModel(dataFile)
 
     val evaluator = new GenericRecommenderIRStatsEvaluator()
@@ -90,6 +90,9 @@ class EvaluatorIntroFunSuite extends AbstractMahoutFunSuite {
     println(s"정확율(precision)=${stats.getPrecision}")
     println(s"재현율(recall)=${stats.getRecall}")
     println(s"stats=$stats")
+
+    stats.getPrecision shouldEqual 0.75
+    stats.getRecall shouldEqual 1.0
   }
 
 }
