@@ -57,7 +57,7 @@ class EvaluatorByMovieLensFunSuite extends AbstractMahoutFunSuite {
       }
     }
     // Use 70% of the data to train; test using the other 30%.
-    val score = evaluator.evaluate(recommenderBuilder, null, model, 0.7, 1.0)
+    val score = evaluator.evaluate(recommenderBuilder, null, model, 0.7, 0.3)
     println(s"Score=$score")
   }
 
