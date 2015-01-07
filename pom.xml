@@ -37,13 +37,12 @@
         </dependency>
         <dependency>
             <groupId>org.apache.mahout</groupId>
-            <artifactId>mahout-math</artifactId>
+            <artifactId>mahout-integration</artifactId>
             <version>${mahout.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.mahout</groupId>
-            <artifactId>mahout-core</artifactId>
-            <type>test-jar</type>
+            <artifactId>mahout-math</artifactId>
             <version>${mahout.version}</version>
         </dependency>
         <dependency>
@@ -265,6 +264,7 @@
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <optimize>true</optimize>
                 </configuration>
             </plugin>
 
@@ -328,6 +328,44 @@
                         <goals>
                             <goal>test</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <enconding>${project.build.sourceEncoding}</enconding>
+                </configuration>
+            </plugin>
+            <!-- create hadoop job jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>job</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptor>src/main/assembly/job.xml</descriptor>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>my-jar-with-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
