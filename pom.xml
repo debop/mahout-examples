@@ -100,6 +100,13 @@
             <version>3.0.3</version>
         </dependency>
 
+        <!-- Spring for Hadoop -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-hadoop</artifactId>
+            <version>2.0.4.RELEASE</version>
+        </dependency>
+
 
         <!-- Test -->
         <dependency>
@@ -337,7 +344,7 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
-                    <enconding>${project.build.sourceEncoding}</enconding>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
             <!-- create hadoop job jar -->
