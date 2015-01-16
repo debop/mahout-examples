@@ -24,11 +24,13 @@ class AggregateAndRecommendReducer
   private var recommendationsPerUser = 10
   private var indexItemIDMap: OpenIntLongHashMap = _
 
-  protected def setup(context: Context): Unit = {
+
+  override def setup(context: Reducer[VarLongWritable, VectorWritable, VarLongWritable, RecommendedItemsWritable]#Context): Unit = {
     val jobConf = context.getConfiguration
     recommendationsPerUser = jobConf.getInt(NUM_RECOMMENDATIONS, DEFAULT_NUM_RECOMMENDATIONS)
     indexItemIDMap = TasteHadoopUtils.readIDIndexMap(jobConf.get(ITEMID_INDEX_PATH), jobConf)
   }
+
   override def reduce(key: VarLongWritable,
                       values: Iterable[VectorWritable],
                       context: Reducer[VarLongWritable, VectorWritable, VarLongWritable, RecommendedItemsWritable]#Context): Unit = {
