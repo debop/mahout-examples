@@ -36,7 +36,7 @@ object ClusterHelper {
     val clustersList = Lists.newArrayList[util.List[Cluster]]()
     val fs = FileSystem.get(output.toUri, conf)
 
-    for (s <- fs.listStatus(output, new ClustersFilter())) {
+    fs.listStatus(output, new ClustersFilter()).foreach { s =>
       val clusters = Lists.newArrayList[Cluster]()
       val iterable = new SequenceFileDirValueIterable[ClusterWritable](s.getPath,
                                                                         PathType.LIST,

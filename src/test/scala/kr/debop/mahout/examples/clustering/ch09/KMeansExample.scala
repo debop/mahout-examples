@@ -44,7 +44,7 @@ class KMeansExample extends AbstractMahoutFunSuite {
     val measure = new EuclideanDistanceMeasure()
 
     RandomSeedGenerator.buildRandom(conf, samples, clustersIn, k, measure)
-    KMeansDriver.run(conf, samples, clustersIn, output, 0.01, 10, true, 0.0, true)
+    KMeansDriver.run(conf, samples, clustersIn, output, 0.01, 100, true, 0.0, true)
 
     val Clusters = ClusterHelper.readClusters(conf, output)
     Clusters.get(Clusters.size - 1).asScala.foreach { cluster =>
