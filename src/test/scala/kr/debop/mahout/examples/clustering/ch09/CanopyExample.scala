@@ -25,7 +25,7 @@ class CanopyExample extends AbstractMahoutFunSuite {
     val canopies = CanopyClusterer.createCanopies(sampleData,
                                                    new EuclideanDistanceMeasure(),
                                                    3.0,
-                                                   1.5)
+                                                   2.2)
     canopies.asScala.foreach { canopy =>
       println(s"Canopy id:${canopy.getId} center:${canopy.getCenter.asFormatString()}")
     }
