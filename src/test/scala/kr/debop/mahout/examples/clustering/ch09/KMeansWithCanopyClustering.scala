@@ -18,6 +18,7 @@ import scala.collection.JavaConverters._
 class KMeansWithCanopyClustering extends AbstractMahoutFunSuite {
 
   test("K-Means with Canopy Clustering") {
+
     val inputDir = "reuters"
 
     val conf = new Configuration
