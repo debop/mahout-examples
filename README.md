@@ -17,3 +17,13 @@ http://www.occamslab.com/petricek/data/libimseti-complete.zip
 http://haselgrove.id.au/wikipedia.htm
 
 links-simple-sorted.zip
+
+
+
+### ch12
+
+12.2 Last.fm에서 아티스트 태그 제시하기
+
+http://musicmachinery.com/2010/11/10/lastfm-artisttags2007/
+
+
